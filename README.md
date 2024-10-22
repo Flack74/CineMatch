@@ -1,6 +1,6 @@
 # 🎬 CineMatch - Movie Recommendation System
 
-![CineMatch Logo](https://www.google.com/url?sa=i&url=https%3A%2F%2Ftechieyantechnologies.com%2Fmovie-recommender-system-application%2F&psig=AOvVaw0s0eR9NR3eGP0ICY0tcuNW&ust=1729680719245000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCJCgqPfooYkDFQAAAAAdAAAAABAh) <!-- Add your project logo here -->
+![CineMatch Logo](https://cdn.sanity.io/images/qyzm5ged/production/6e9ba02908d8f9589ec90db79eeff45288d8f954-1762x985.gif/providing-real-time-search-suggestions.gif) <!-- Add your project logo here -->
 
 CineMatch is an AI-powered movie recommendation system that uses **Content-Based Filtering** and **AI** techniques to recommend personalized movies to users. The system learns from user preferences and suggests movies based on genre, cast, director, and more.
 
