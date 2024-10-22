@@ -22,12 +22,6 @@ CineMatch is an AI-powered movie recommendation system that uses **Content-Based
 
 ---
 
-## 🚀 Live Demo
-
-//Check out the live version of CineMatch here: [Live Demo](https://your-demo-link.com)
-
----
-
 ## 🛠️ Tech Stack
 
 | **Category**    | **Technology**                       |
