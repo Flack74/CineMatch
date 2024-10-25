@@ -9,7 +9,7 @@ import SignUpForm from './components/SignUpForm';
 const App = () => {
   return (
     <Router>
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginForm/>} />
