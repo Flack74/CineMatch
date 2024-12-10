@@ -1,18 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import Cookies from "js-cookie";
 import { FacebookIcon, Eye, EyeOff } from "lucide-react";
-// import jwt_decode from "jwt-decode"; // Corrected import
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// let jwt_decode;
-// import("jwt-decode").then((module) => {
-//   jwt_decode = module.default;
-// });
-
 const LoginForm = () => {
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState({ username: "", password: "" });
   const [rememberMe, setRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -31,7 +24,7 @@ const LoginForm = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      const response = await fetch("http://localhost:5000/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -47,11 +40,9 @@ const LoginForm = () => {
         throw new Error(errorMessage);
       }
 
-      const data = await response.json();
-      Cookies.set("authToken", data.token, { expires: rememberMe ? 7 : 1 });
       toast.success("Login successful");
-      
-      navigate("/user/dashboard");
+      navigate("/dashboard");
+
     } catch (error) {
       toast.error(error.message);
     } finally {
@@ -85,19 +76,18 @@ const LoginForm = () => {
           >
             <div>
               <label
-                htmlFor="email"
+                htmlFor="name"
                 className="block text-sm font-medium leading-6 text-gray-900"
               >
-                Email address
+                User name 
               </label>
               <div className="mt-2">
                 <input
-                  id="email"
-                  name="email"
-                  type="email"
+                  id="username"
+                  name="username"
+                  type="text"
                   required
-                  autoComplete="email"
-                  value={formData.email}
+                  value={formData.username}
                   onChange={handleChange}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -140,13 +130,13 @@ const LoginForm = () => {
             </div>
 
             <div className="flex items-center justify-between">
-              <div className="flex items-center">
+              {/* <div className="flex items-center">
                 <input
                   id="rememberMe"
                   name="rememberMe"
                   type="checkbox"
-                  checked={rememberMe}
-                  onChange={handleCheckboxChange}
+                  // checked={rememberMe}
+                  // onChange={handleCheckboxChange}
                   className="h-4 w-4 border-gray-300 rounded focus:ring-indigo-600"
                 />
                 <label
@@ -155,7 +145,7 @@ const LoginForm = () => {
                 >
                   Remember me
                 </label>
-              </div>
+              </div> */}
 
               <div className="text-sm">
                 <a
