@@ -33,6 +33,8 @@ Visit the live application: [CineMatch](https://cine-match-two.vercel.app/)
 ### Deployment
 - **Vercel** - For hosting the frontend
 - **Flask Backend** - Hosted using a reliable backend service
+- **Docker** - For containerizing the application
+- **Kubernetes (Minikube)** - For deploying the app in a Kubernetes cluster locally
 
 ## 📜 Features
 
@@ -47,6 +49,8 @@ Visit the live application: [CineMatch](https://cine-match-two.vercel.app/)
 - Node.js
 - Python 3.9+
 - MongoDB Database
+- Docker
+- Kubernetes (Minikube)
 
 ### Installation
 
@@ -65,19 +69,102 @@ Visit the live application: [CineMatch](https://cine-match-two.vercel.app/)
    npm start
    ```
 
-#### Backend
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/cinematch-backend.git
-   cd cinematch-backend
+## 🐳 Dockerizing the Application
+
+1. **Create a `Dockerfile`** for the React frontend:
+   ```dockerfile
+   # Build the app
+   FROM node:16 AS build
+   WORKDIR /app
+   COPY . ./
+   RUN npm install
+   RUN npm run build
+
+   # Serve the app
+   FROM nginx:alpine
+   COPY --from=build /app/build /usr/share/nginx/html
+   EXPOSE 80
+   CMD ["nginx", "-g", "daemon off;"]
    ```
-2. Install dependencies:
+
+2. **Build the Docker image**:
    ```bash
-   pip install -r requirements.txt
+   docker build -t flack74621/cinematch:latest .
    ```
-3. Run the server:
+
+3. **Push the Docker image to Docker Hub**:
    ```bash
-   flask run
+   docker push flack74621/cinematch:latest
+   ```
+
+## ☸️ Deploying to Kubernetes
+
+1. **Start Minikube** to create a local Kubernetes cluster:
+   ```bash
+   minikube start
+   ```
+
+2. **Create Kubernetes `deployment.yaml`**:
+   ```yaml
+   apiVersion: apps/v1
+   kind: Deployment
+   metadata:
+     name: cinematch
+     labels:
+       app: cinematch
+   spec:
+     replicas: 2
+     selector:
+       matchLabels:
+         app: cinematch
+     template:
+       metadata:
+         labels:
+           app: cinematch
+       spec:
+         containers:
+         - name: cinematch
+           image: flack74621/cinematch:latest
+           ports:
+           - containerPort: 80
+   ```
+
+3. **Create Kubernetes `service.yaml`**:
+   ```yaml
+   apiVersion: v1
+   kind: Service
+   metadata:
+     name: cinematch-service
+   spec:
+     selector:
+       app: cinematch
+     ports:
+       - protocol: TCP
+         port: 80
+         targetPort: 80
+     type: NodePort
+   ```
+
+4. **Deploy to Kubernetes**:
+   ```bash
+   kubectl apply -f deployment.yaml
+   kubectl apply -f service.yaml
+   ```
+
+5. **Access the Application** via Minikube:
+   ```bash
+   minikube service cinematch-service
+   ```
+
+6. **Scale the Deployment**:
+   ```bash
+   kubectl scale deployment cinematch --replicas=2
+   ```
+
+7. **Verify the Deployment**:
+   ```bash
+   kubectl get pods
+   kubectl get svc
    ```
 
 ## 🛡️ License
@@ -101,3 +188,7 @@ Contributions are welcome! Please follow the standard GitHub workflow:
 ---
 
 Feel free to reach out if you have any questions or suggestions. Enjoy using CineMatch!
+
+---
+
+This README includes all the Docker and Kubernetes steps, along with instructions for setting up and running the CineMatch app locally and in a Kubernetes environment.
