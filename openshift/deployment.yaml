@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: cinematch
-        image: image-registry.openshift-image-registry.svc:5000/your-namespace/cinematch:latest
+        image: flack74621/cinematch:latest  # Use your Docker Hub repository if pushed
         ports:
         - containerPort: 80
