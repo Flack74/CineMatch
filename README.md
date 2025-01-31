@@ -188,7 +188,4 @@ Contributions are welcome! Please follow the standard GitHub workflow:
 ---
 
 Feel free to reach out if you have any questions or suggestions. Enjoy using CineMatch!
-
 ---
-
-This README includes all the Docker and Kubernetes steps, along with instructions for setting up and running the CineMatch app locally and in a Kubernetes environment.
