@@ -189,3 +189,4 @@ Contributions are welcome! Please follow the standard GitHub workflow:
 
 Feel free to reach out if you have any questions or suggestions. Enjoy using CineMatch!
 ---
+
